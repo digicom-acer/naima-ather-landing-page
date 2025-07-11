@@ -72,7 +72,7 @@
 </head>
 <body>
   <!-- Consent Dialog -->
-  <div class="dialog-box" id="dialog" style="display: none;">
+  <div class="dialog-box" id="dialog">
     <h2>Share Your Contact Details?</h2>
     <p>We’d like to collect your name and phone number to connect you with exclusive updates.</p>
     <button class="yes" onclick="showForm()">Yes</button>
@@ -90,7 +90,7 @@
     </form>
   </div>
 
-  <!-- Main Content -->
+  <!-- Actual Landing Page -->
   <div class="container" id="mainContent" style="display: none;">
     <h1>Welcome!</h1>
     <p><a href="https://www.facebook.com/atherenergynepal/" target="_blank">📘 Facebook</a></p>
@@ -104,51 +104,39 @@
   </div>
 
   <script>
-    window.onload = function () {
-      // Start with only the dialog box visible
-      document.getElementById('dialog').style.display = 'block';
-      document.getElementById('formBox').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'none';
+    function showForm() {
+      document.getElementById('dialog').style.display = 'none';
+      document.getElementById('formBox').style.display = 'block';
+    }
 
-      // Show contact form on YES
-      window.showForm = function () {
-        document.getElementById('dialog').style.display = 'none';
-        document.getElementById('formBox').style.display = 'block';
-      };
+    function redirectNow() {
+      document.getElementById('dialog').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }
 
-      // Skip and show main page on NO
-      window.redirectNow = function () {
-        document.getElementById('dialog').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
-      };
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
 
-      // Submit form to Google Script
-      document.getElementById('contactForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
-
-        fetch('SCRIPT_URL_HERE', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: formData.get('name'),
-            phone: formData.get('phone'),
-            email: formData.get('email')
-          })
+      fetch('SCRIPT_URL_HERE', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          phone: formData.get('phone'),
+          email: formData.get('email')
         })
-          .then(res => {
-            form.reset();
-            document.getElementById('formBox').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-          })
-          .catch(err => {
-            alert('Failed to submit. Redirecting anyway.');
-            document.getElementById('formBox').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-          });
+      }).then(res => {
+        form.reset();
+        document.getElementById('formBox').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      }).catch(err => {
+        alert('Failed to submit. Redirecting anyway.');
+        document.getElementById('formBox').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
       });
-    };
+    });
   </script>
 </body>
 </html>
