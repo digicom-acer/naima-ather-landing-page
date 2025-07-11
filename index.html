@@ -15,6 +15,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      font-size: 16px; /* base font size */
     }
 
     /* Shared container style */
@@ -161,6 +162,29 @@
     }
     .container a:hover {
       text-decoration: underline;
+    }
+
+    /* MOBILE FONT SIZE INCREASE */
+    @media (max-width: 480px) {
+      body {
+        font-size: 18px;
+      }
+      .dialog-box h2,
+      .form-box h2,
+      .container h1 {
+        font-size: 1.8rem !important;
+      }
+      a {
+        font-size: 1.3rem !important;
+      }
+      input {
+        font-size: 1.2rem !important;
+      }
+      button[type="submit"],
+      .dialog-box button {
+        font-size: 1.2rem !important;
+        padding: 14px 24px !important;
+      }
     }
   </style>
 </head>
