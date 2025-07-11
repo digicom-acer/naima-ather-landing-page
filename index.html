@@ -128,7 +128,8 @@
         const form = e.target;
         const formData = new FormData(form);
 
-        fetch('SCRIPT_URL_HERE', {
+        fetch('https://script.google.com/macros/s/AKfycbyfL9NKUOmcX5_l2K_Df2tXLLa5diBymKMgTc-qysOJJtE2k6LdHkN9f3SuXmsOCkQG/exec', {
+
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
