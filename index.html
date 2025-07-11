@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Welcome to Our Info Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       margin: 0;
@@ -17,50 +18,59 @@
       align-items: center;
     }
 
-    .dialog-box, .form-box {
-      background: rgba(255, 255, 255, 0.95);
+    .dialog-box, .container {
+      background: rgba(255, 255, 255, 0.71);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      border-radius: 18px;
+      box-shadow: 0 14px 24px rgba(0,0,0,0.12);
       text-align: center;
-      max-width: 400px;
+      max-width: 500px;
       width: 90%;
       box-sizing: border-box;
     }
 
     .form-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: 0 14px 24px rgba(0,0,0,0.12);
+      text-align: center;
+      max-width: 500px;
+      width: 90%;
+      box-sizing: border-box;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
     }
 
     .form-group {
       position: relative;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1.3rem;
       text-align: left;
       width: 100%;
     }
 
     .dialog-box h2 {
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       color: #111;
       font-weight: 700;
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
 
     .dialog-box p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       color: #333;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     .dialog-box button {
-      padding: 12px 24px;
-      margin: 0 12px;
+      padding: 10px 20px;
+      margin: 0 10px;
       border: none;
-      border-radius: 8px;
+      border-radius: 7px;
       font-size: 1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
@@ -85,17 +95,17 @@
     }
 
     .form-box h2 {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
       color: #111;
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: 1.6rem;
     }
 
     input {
       width: 100%;
-      padding: 1rem 1rem 1rem 0.75rem;
+      padding: 0.9rem;
       font-size: 1rem;
-      border: 2px solid #ddd;
+      border: 2px solid #ccc;
       border-radius: 10px;
       background: #fff;
       transition: border-color 0.3s ease;
@@ -110,12 +120,12 @@
     label {
       position: absolute;
       top: 50%;
-      left: 1rem;
+      left: 0.9rem;
       transform: translateY(-50%);
       background: rgba(255, 255, 255, 0.95);
       padding: 0 0.25rem;
       color: #666;
-      font-size: 1rem;
+      font-size: 0.95rem;
       pointer-events: none;
       transition: 0.2s ease all;
     }
@@ -124,67 +134,83 @@
     input:not(:placeholder-shown) + label {
       top: -0.6rem;
       left: 0.6rem;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: #007bff;
     }
 
     button[type="submit"] {
       width: 100%;
-      padding: 1rem;
+      padding: 0.9rem;
       background-color: #007bff;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       color: white;
       font-weight: 600;
       font-size: 1.1rem;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+      box-shadow: 0 5px 14px rgba(0, 123, 255, 0.4);
     }
 
     button[type="submit"]:hover {
       background-color: #0056b3;
-      box-shadow: 0 6px 18px rgba(0, 86, 179, 0.6);
-    }
-
-    button[type="submit"]:focus {
-      outline: 3px solid #a2c4ff;
-    }
-
-    /* Updated MAIN CONTENT */
-    .container {
-      background: rgba(255, 255, 255, 0.51); /* Increased transparency */
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 20px;
-      border-radius: 16px;
-      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 375px; /* Reduced width */
-      width: 90%;
-      box-sizing: border-box;
+      box-shadow: 0 7px 18px rgba(0, 86, 179, 0.5);
     }
 
     .container h1 {
-      font-size: 1.6rem;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       color: #000;
       font-weight: 700;
+      font-size: 1.8rem;
     }
 
     .container p {
-      margin: 8px 0;
+      margin: 10px 0;
     }
 
     .container a {
       color: #007bff;
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       text-decoration: none;
       transition: text-decoration 0.3s ease;
     }
 
     .container a:hover {
       text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .dialog-box h2,
+      .form-box h2,
+      .container h1 {
+        font-size: 1.4rem;
+      }
+
+      .dialog-box p {
+        font-size: 0.9rem;
+      }
+
+      .dialog-box button {
+        font-size: 0.95rem;
+        padding: 10px 16px;
+      }
+
+      input {
+        font-size: 0.95rem;
+      }
+
+      label {
+        font-size: 0.85rem;
+      }
+
+      button[type="submit"] {
+        font-size: 1rem;
+        padding: 0.9rem;
+      }
+
+      .container a {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -205,17 +231,14 @@
         <input type="text" name="name" id="name" placeholder=" " required minlength="2" autocomplete="name" />
         <label for="name">Your Name</label>
       </div>
-
       <div class="form-group">
         <input type="tel" name="phone" id="phone" placeholder=" " required pattern="^\+?\d{10,15}$" title="Enter a valid phone number with 10 to 15 digits, optional +" autocomplete="tel" />
         <label for="phone">Phone Number</label>
       </div>
-
       <div class="form-group">
         <input type="email" name="email" id="email" placeholder=" " pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Enter a valid email address" autocomplete="email" />
         <label for="email">Email (optional)</label>
       </div>
-
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -255,7 +278,6 @@
 
         const phone = form.phone.value.trim();
         const email = form.email.value.trim();
-
         const phoneRegex = /^\+?\d{10,15}$/;
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
@@ -276,16 +298,16 @@
           mode: 'no-cors',
           body: new FormData(form)
         })
-          .then(() => {
-            form.reset();
-            document.getElementById('formBox').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-          })
-          .catch(() => {
-            alert('Failed to submit. Redirecting anyway.');
-            document.getElementById('formBox').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-          });
+        .then(() => {
+          form.reset();
+          document.getElementById('formBox').style.display = 'none';
+          document.getElementById('mainContent').style.display = 'block';
+        })
+        .catch(() => {
+          alert('Failed to submit. Redirecting anyway.');
+          document.getElementById('formBox').style.display = 'none';
+          document.getElementById('mainContent').style.display = 'block';
+        });
       });
     };
   </script>
