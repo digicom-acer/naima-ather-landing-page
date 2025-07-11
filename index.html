@@ -29,23 +29,6 @@
       box-sizing: border-box;
     }
 
-    /* Center form content */
-    .form-box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    /* Make form groups full width */
-    .form-group {
-      position: relative;
-      margin-bottom: 1.8rem;
-      text-align: left;
-      width: 100%;
-    }
-
     /* Consent Dialog */
     .dialog-box h2 {
       margin-bottom: 1rem;
@@ -88,6 +71,11 @@
       color: #111;
       font-weight: 700;
       font-size: 1.8rem;
+    }
+    .form-group {
+      position: relative;
+      margin-bottom: 1.8rem;
+      text-align: left;
     }
     input {
       width: 100%;
@@ -242,7 +230,7 @@
 
       window.showForm = function () {
         document.getElementById('dialog').style.display = 'none';
-        document.getElementById('formBox').style.display = 'flex';
+        document.getElementById('formBox').style.display = 'block';
       };
 
       window.redirectNow = function () {
@@ -272,7 +260,7 @@
           return;
         }
 
-        fetch('https://script.google.com/macros/s/AKfycbwj7RDmTLz_4ufE0k-eW0VRHt4_JmPFeFng6myEpNo_Q9AJ7QafzOad4mRnDtbRe3GH/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbw6bD0yec-vzRs1L4nqONruwcj-PUh7-K02j33_UEtJduIxScfLOxfsJAHSuJyOYtbopg/exec', {
           method: 'POST',
           mode: 'no-cors',
           body: new FormData(form)
