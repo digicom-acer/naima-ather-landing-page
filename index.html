@@ -11,65 +11,144 @@
       background-image: url('https://digicom-acer.github.io/naima-ather-landing-page/background.jpg');
       background-size: cover;
       background-position: center;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
+    /* Shared container style */
     .dialog-box, .form-box, .container {
       background: rgba(255, 255, 255, 0.95);
       padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
       text-align: center;
       max-width: 400px;
       width: 90%;
+      box-sizing: border-box;
     }
 
-    h1, h2 {
+    /* Consent Dialog */
+    .dialog-box h2 {
+      margin-bottom: 1rem;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.6rem;
+    }
+    .dialog-box p {
+      margin-bottom: 1.5rem;
+      color: #333;
+      font-size: 1rem;
+    }
+    .dialog-box button {
+      padding: 12px 24px;
+      margin: 0 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .yes {
+      background: #28a745;
+      color: white;
+    }
+    .yes:hover {
+      background: #1e7e34;
+    }
+    .no {
+      background: #dc3545;
+      color: white;
+    }
+    .no:hover {
+      background: #a71d2a;
+    }
+
+    /* Form Styles */
+    .form-box h2 {
+      margin-bottom: 1.5rem;
+      color: #111;
+      font-weight: 700;
+      font-size: 1.8rem;
+    }
+    .form-group {
+      position: relative;
+      margin-bottom: 1.8rem;
+      text-align: left;
+    }
+    input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 0.75rem;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
+      transition: border-color 0.3s ease;
+      outline-offset: 2px;
+    }
+    input:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 6px #a2c4ff;
+    }
+    label {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 0 0.25rem;
+      color: #666;
+      font-size: 1rem;
+      pointer-events: none;
+      transition: 0.2s ease all;
+    }
+    input:focus + label,
+    input:not(:placeholder-shown) + label {
+      top: -0.6rem;
+      left: 0.6rem;
+      font-size: 0.75rem;
+      color: #007bff;
+    }
+    button[type="submit"] {
+      width: 100%;
+      padding: 1rem;
+      background-color: #007bff;
+      border: none;
+      border-radius: 12px;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+    }
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+      box-shadow: 0 6px 18px rgba(0, 86, 179, 0.6);
+    }
+    button[type="submit"]:focus {
+      outline: 3px solid #a2c4ff;
+    }
+
+    /* Main Content */
+    .container h1 {
       margin-bottom: 20px;
       color: #000;
+      font-weight: 700;
+      font-size: 2.2rem;
     }
-
-    a {
-      color: #000;
-      text-decoration: none;
-      font-size: 1.2em;
-      display: block;
+    .container p {
       margin: 12px 0;
     }
-
-    a:hover {
+    .container a {
+      color: #007bff;
+      font-size: 1.15rem;
+      text-decoration: none;
+      transition: text-decoration 0.3s ease;
+    }
+    .container a:hover {
       text-decoration: underline;
-    }
-
-    button {
-      padding: 10px 20px;
-      margin: 10px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    .yes { background: #28a745; color: white; }
-    .no { background: #dc3545; color: white; }
-
-    .form-box input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-
-    .form-box button {
-      background-color: #007bff;
-      color: white;
-      width: 94%;
-      margin-top: 15px;
     }
   </style>
 </head>
@@ -86,28 +165,46 @@
   <div class="form-box" id="formBox" style="display: none;">
     <h2>Enter Your Contact Info</h2>
     <form id="contactForm" novalidate>
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        required
-        minlength="2"
-      />
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone Number"
-        required
-        pattern="^\+?\d{10,15}$"
-        title="Enter a valid phone number with 10 to 15 digits, optional +"
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email (optional)"
-        pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-        title="Enter a valid email address"
-      />
+      <div class="form-group">
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder=" "
+          required
+          minlength="2"
+          autocomplete="name"
+        />
+        <label for="name">Your Name</label>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          placeholder=" "
+          required
+          pattern="^\+?\d{10,15}$"
+          title="Enter a valid phone number with 10 to 15 digits, optional +"
+          autocomplete="tel"
+        />
+        <label for="phone">Phone Number</label>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder=" "
+          pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          title="Enter a valid email address"
+          autocomplete="email"
+        />
+        <label for="email">Email (optional)</label>
+      </div>
+
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -115,12 +212,12 @@
   <!-- Main Content -->
   <div class="container" id="mainContent" style="display: none;">
     <h1>Welcome!</h1>
-    <p><a href="https://www.facebook.com/atherenergynepal/" target="_blank">📘 Facebook</a></p>
-    <p><a href="https://www.instagram.com/atherenergy_nepal/" target="_blank">📸 Instagram</a></p>
-    <p><a href="https://x.com/atherenergy_np" target="_blank">🐦 X</a></p>
-    <p><a href="https://api.whatsapp.com/send/?phone=%2B9779815184433&text&type=phone_number&app_absent=0">💬 Whatsapp</a></p>
-    <p><a href="https://atherenergy.com.np/" target="_blank">🌐 Website</a></p>
-    <p><a href="https://atherenergy.com.np/locate-us" target="_blank">📍 Our Locations</a></p>
+    <p><a href="https://www.facebook.com/atherenergynepal/" target="_blank" rel="noopener noreferrer">📘 Facebook</a></p>
+    <p><a href="https://www.instagram.com/atherenergy_nepal/" target="_blank" rel="noopener noreferrer">📸 Instagram</a></p>
+    <p><a href="https://x.com/atherenergy_np" target="_blank" rel="noopener noreferrer">🐦 X</a></p>
+    <p><a href="https://api.whatsapp.com/send/?phone=%2B9779815184433&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">💬 Whatsapp</a></p>
+    <p><a href="https://atherenergy.com.np/" target="_blank" rel="noopener noreferrer">🌐 Website</a></p>
+    <p><a href="https://atherenergy.com.np/locate-us" target="_blank" rel="noopener noreferrer">📍 Our Locations</a></p>
     <p><a href="tel:+9779815184433">📞 Call Us</a></p>
     <p><a href="https://atherenergy.com.np/assets/pdf/product_brochure_450_series.pdf?dl=1" download>📄 Download Brochure</a></p>
   </div>
@@ -163,7 +260,7 @@
           return;
         }
 
-        fetch('https://script.google.com/macros/s/AKfycbz0PKU92G3TXUYZw8U6S4her9C4ygobfVKP4Aa7SOE4bA1mJT52X7MUxFMCShOL6Mcq/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbwj7RDmTLz_4ufE0k-eW0VRHt4_JmPFeFng6myEpNo_Q9AJ7QafzOad4mRnDtbRe3GH/exec', {
           method: 'POST',
           mode: 'no-cors',
           body: new FormData(form)
