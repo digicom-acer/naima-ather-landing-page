@@ -91,15 +91,15 @@
         name="name"
         placeholder="Your Name"
         required
-        minlength="2"
+        minlength="3"
       />
       <input
         type="tel"
         name="phone"
         placeholder="Phone Number"
         required
-        pattern="^\+?\d{7,15}$"
-        title="Enter a valid phone number with 7 to 15 digits, optional +"
+        pattern="^\+?\d{10,15}$"
+        title="Enter a valid phone number with 10 to 15 digits, optional +"
       />
       <input
         type="email"
@@ -148,11 +148,11 @@
         const phone = form.phone.value.trim();
         const email = form.email.value.trim();
 
-        const phoneRegex = /^\+?\d{7,15}$/;
+        const phoneRegex = /^\+?\d{10,15}$/;
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
         if (!phoneRegex.test(phone)) {
-          alert('Please enter a valid phone number (7-15 digits, optional +).');
+          alert('Please enter a valid phone number (10-15 digits, optional +).');
           form.phone.focus();
           return;
         }
