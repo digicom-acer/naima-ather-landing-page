@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <title>Welcome to Our Info Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#007bff" />
+  <link rel="icon" href="favicon.ico" />
+
   <style>
     body {
       margin: 0;
@@ -16,6 +19,15 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    .dialog-box, .form-box, .container {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .dialog-box, .container {
@@ -115,6 +127,10 @@
     input:focus {
       border-color: #007bff;
       box-shadow: 0 0 6px #a2c4ff;
+    }
+
+    input:valid {
+      border-color: #28a745;
     }
 
     label {
@@ -239,7 +255,7 @@
         <input type="email" name="email" id="email" placeholder=" " pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="Enter a valid email address" autocomplete="email" />
         <label for="email">Email (optional)</label>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit" id="submitBtn">Submit</button>
     </form>
   </div>
 
@@ -273,6 +289,8 @@
       };
 
       const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -282,7 +300,7 @@
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
         if (!phoneRegex.test(phone)) {
-          alert('Please enter a valid phone number (10-15 digits, optional +).');
+          alert('Please enter a valid phone number (10–15 digits, optional +).');
           form.phone.focus();
           return;
         }
@@ -292,6 +310,8 @@
           form.email.focus();
           return;
         }
+
+        submitBtn.disabled = true;
 
         fetch('https://script.google.com/macros/s/AKfycbw6bD0yec-vzRs1L4nqONruwcj-PUh7-K02j33_UEtJduIxScfLOxfsJAHSuJyOYtbopg/exec', {
           method: 'POST',
