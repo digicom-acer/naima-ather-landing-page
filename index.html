@@ -24,25 +24,9 @@
       border-radius: 16px;
       box-shadow: 0 12px 24px rgba(0,0,0,0.15);
       text-align: center;
-      max-width: 500px;    /* increased max width */
+      max-width: 400px;
       width: 90%;
       box-sizing: border-box;
-    }
-
-    /* Tablets and bigger phones */
-    @media (min-width: 481px) and (max-width: 768px) {
-      .dialog-box, .form-box, .container {
-        max-width: 600px;  /* wider on tablets */
-        width: 80%;
-      }
-    }
-
-    /* Desktop */
-    @media (min-width: 769px) {
-      .dialog-box, .form-box, .container {
-        max-width: 700px; /* even wider on desktop */
-        width: 60%;
-      }
     }
 
     /* Center form content */
@@ -177,6 +161,43 @@
     }
     .container a:hover {
       text-decoration: underline;
+    }
+
+    /* Mobile styles: increase font sizes and button sizes */
+    @media (max-width: 480px) {
+      .dialog-box h2 {
+        font-size: 1.9rem;
+      }
+      .dialog-box p {
+        font-size: 1.2rem;
+      }
+      .dialog-box button {
+        font-size: 1.3rem;
+        padding: 14px 28px;
+        margin: 10px 8px;
+      }
+
+      .form-box h2 {
+        font-size: 2rem;
+      }
+      input {
+        font-size: 1.1rem;
+        padding: 1.2rem 1rem 1.2rem 0.75rem;
+      }
+      label {
+        font-size: 1.1rem;
+      }
+      button[type="submit"] {
+        font-size: 1.3rem;
+        padding: 1.2rem;
+      }
+
+      .container h1 {
+        font-size: 2.4rem;
+      }
+      .container a {
+        font-size: 1.4rem;
+      }
     }
   </style>
 </head>
