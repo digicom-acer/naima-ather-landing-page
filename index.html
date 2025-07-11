@@ -105,49 +105,47 @@
 
   <script>
     window.onload = function () {
-      // Start with only the dialog box visible
       document.getElementById('dialog').style.display = 'block';
       document.getElementById('formBox').style.display = 'none';
       document.getElementById('mainContent').style.display = 'none';
 
-      // Show contact form on YES
       window.showForm = function () {
         document.getElementById('dialog').style.display = 'none';
         document.getElementById('formBox').style.display = 'block';
       };
 
-      // Skip and show main page on NO
       window.redirectNow = function () {
         document.getElementById('dialog').style.display = 'none';
         document.getElementById('mainContent').style.display = 'block';
       };
 
-      // Submit form to Google Script
       document.getElementById('contactForm').addEventListener('submit', function (e) {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
 
         fetch('https://script.google.com/macros/s/AKfycbyfL9NKUOmcX5_l2K_Df2tXLLa5diBymKMgTc-qysOJJtE2k6LdHkN9f3SuXmsOCkQG/exec', {
-
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors', // Allow cross-origin POST to Google Script
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
             name: formData.get('name'),
             phone: formData.get('phone'),
             email: formData.get('email')
           })
         })
-          .then(res => {
-            form.reset();
-            document.getElementById('formBox').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-          })
-          .catch(err => {
-            alert('Failed to submit. Redirecting anyway.');
-            document.getElementById('formBox').style.display = 'none';
-            document.getElementById('mainContent').style.display = 'block';
-          });
+        .then(() => {
+          form.reset();
+          document.getElementById('formBox').style.display = 'none';
+          document.getElementById('mainContent').style.display = 'block';
+        })
+        .catch(() => {
+          alert('Failed to submit. Redirecting anyway.');
+          document.getElementById('formBox').style.display = 'none';
+          document.getElementById('mainContent').style.display = 'block';
+        });
       });
     };
   </script>
