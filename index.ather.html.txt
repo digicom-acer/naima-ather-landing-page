@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Our Info Hub</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-image: url('https://digicom-acer.github.io/naima-ather-landing-page/background.jpg');
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .dialog-box, .form-box, .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    a {
+      color: #000;
+      text-decoration: none;
+      font-size: 1.2em;
+      display: block;
+      margin: 12px 0;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .yes { background: #28a745; color: white; }
+    .no { background: #dc3545; color: white; }
+
+    .form-box input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .form-box button {
+      background-color: #007bff;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Consent Dialog -->
+  <div class="dialog-box" id="dialog" style="display: none;">
+    <h2>Share Your Contact Details?</h2>
+    <p>We’d like to collect your name and phone number to connect you with exclusive updates.</p>
+    <button class="yes" onclick="showForm()">Yes</button>
+    <button class="no" onclick="redirectNow()">No</button>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="form-box" id="formBox" style="display: none;">
+    <h2>Enter Your Contact Info</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <input type="email" name="email" placeholder="Email (optional)">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container" id="mainContent" style="display: none;">
+    <h1>Welcome!</h1>
+    <p><a href="https://www.facebook.com/atherenergynepal/" target="_blank">📘 Facebook</a></p>
+    <p><a href="https://www.instagram.com/atherenergy_nepal/" target="_blank">📸 Instagram</a></p>
+    <p><a href="https://x.com/atherenergy_np" target="_blank">🐦 X</a></p>
+    <p><a href="https://api.whatsapp.com/send/?phone=%2B9779815184433&text&type=phone_number&app_absent=0">💬 Whatsapp</a></p>
+    <p><a href="https://atherenergy.com.np/" target="_blank">🌐 Website</a></p>
+    <p><a href="https://atherenergy.com.np/locate-us" target="_blank">📍 Our Locations</a></p>
+    <p><a href="tel:+9779815184433">📞 Call Us</a></p>
+    <p><a href="https://atherenergy.com.np/assets/pdf/product_brochure_450_series.pdf?dl=1" download>📄 Download Brochure</a></p>
+  </div>
+
+  <script>
+    window.onload = function () {
+      // Start with only the dialog box visible
+      document.getElementById('dialog').style.display = 'block';
+      document.getElementById('formBox').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'none';
+
+      // Show contact form on YES
+      window.showForm = function () {
+        document.getElementById('dialog').style.display = 'none';
+        document.getElementById('formBox').style.display = 'block';
+      };
+
+      // Skip and show main page on NO
+      window.redirectNow = function () {
+        document.getElementById('dialog').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+      };
+
+      // Submit form to Google Script
+      document.getElementById('contactForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+
+        fetch('SCRIPT_URL_HERE', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.get('name'),
+            phone: formData.get('phone'),
+            email: formData.get('email')
+          })
+        })
+          .then(res => {
+            form.reset();
+            document.getElementById('formBox').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+          })
+          .catch(err => {
+            alert('Failed to submit. Redirecting anyway.');
+            document.getElementById('formBox').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+          });
+      });
+    };
+  </script>
+</body>
+</html>
