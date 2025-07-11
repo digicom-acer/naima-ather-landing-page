@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Welcome to Our Info Hub</title>
   <style>
     body {
@@ -62,11 +62,14 @@
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 6px;
+      font-size: 16px;
     }
 
     .form-box button {
       background-color: #007bff;
       color: white;
+      width: 94%;
+      margin-top: 15px;
     }
   </style>
 </head>
@@ -82,10 +85,29 @@
   <!-- Contact Form -->
   <div class="form-box" id="formBox" style="display: none;">
     <h2>Enter Your Contact Info</h2>
-    <form id="contactForm">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="tel" name="phone" placeholder="Phone Number" required>
-      <input type="email" name="email" placeholder="Email (optional)">
+    <form id="contactForm" novalidate>
+      <input
+        type="text"
+        name="name"
+        placeholder="Your Name"
+        required
+        minlength="2"
+      />
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone Number"
+        required
+        pattern="^\+?\d{7,15}$"
+        title="Enter a valid phone number with 7 to 15 digits, optional +"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email (optional)"
+        pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+        title="Enter a valid email address"
+      />
       <button type="submit">Submit</button>
     </form>
   </div>
@@ -119,26 +141,43 @@
         document.getElementById('mainContent').style.display = 'block';
       };
 
-      document.getElementById('contactForm').addEventListener('submit', function (e) {
+      const form = document.getElementById('contactForm');
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
-        const form = e.target;
-        const formData = new FormData(form);
 
-        fetch('https://script.google.com/macros/s/AKfycbynVrtAdOkOIV89fb0TJTeqQjcGNHslpEIEl0-mKDX92-bn1FaEzUwRrO0HjLJhA4_s-A/exec', {
+        const phone = form.phone.value.trim();
+        const email = form.email.value.trim();
+
+        const phoneRegex = /^\+?\d{7,15}$/;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+        if (!phoneRegex.test(phone)) {
+          alert('Please enter a valid phone number (7-15 digits, optional +).');
+          form.phone.focus();
+          return;
+        }
+
+        if (email && !emailRegex.test(email)) {
+          alert('Please enter a valid email address.');
+          form.email.focus();
+          return;
+        }
+
+        fetch('https://script.google.com/macros/s/AKfycbwj7RDmTLz_4ufE0k-eW0VRHt4_JmPFeFng6myEpNo_Q9AJ7QafzOad4mRnDtbRe3GH/exec', {
           method: 'POST',
           mode: 'no-cors',
-          body: formData
+          body: new FormData(form)
         })
-        .then(() => {
-          form.reset();
-          document.getElementById('formBox').style.display = 'none';
-          document.getElementById('mainContent').style.display = 'block';
-        })
-        .catch(() => {
-          alert('Failed to submit. Redirecting anyway.');
-          document.getElementById('formBox').style.display = 'none';
-          document.getElementById('mainContent').style.display = 'block';
-        });
+          .then(() => {
+            form.reset();
+            document.getElementById('formBox').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+          })
+          .catch(() => {
+            alert('Failed to submit. Redirecting anyway.');
+            document.getElementById('formBox').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+          });
       });
     };
   </script>
