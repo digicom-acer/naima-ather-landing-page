@@ -126,15 +126,8 @@
 
         fetch('https://script.google.com/macros/s/AKfycbyfL9NKUOmcX5_l2K_Df2tXLLa5diBymKMgTc-qysOJJtE2k6LdHkN9f3SuXmsOCkQG/exec', {
           method: 'POST',
-          mode: 'no-cors', // Allow cross-origin POST to Google Script
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            name: formData.get('name'),
-            phone: formData.get('phone'),
-            email: formData.get('email')
-          })
+          mode: 'no-cors',
+          body: formData
         })
         .then(() => {
           form.reset();
