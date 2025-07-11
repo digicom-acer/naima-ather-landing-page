@@ -20,11 +20,11 @@
     /* Shared container style */
     .dialog-box, .form-box, .container {
       background: rgba(255, 255, 255, 0.95);
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      padding: 45px; /* 30px * 1.5 */
+      border-radius: 24px; /* 16px * 1.5 */
+      box-shadow: 0 18px 36px rgba(0,0,0,0.15); /* 12px, 24px * 1.5 */
       text-align: center;
-      max-width: 400px;
+      max-width: 600px; /* increased from 400px */
       width: 90%;
       box-sizing: border-box;
     }
@@ -41,29 +41,29 @@
     /* Make form groups full width */
     .form-group {
       position: relative;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2.7rem; /* 1.8rem * 1.5 */
       text-align: left;
       width: 100%;
     }
 
     /* Consent Dialog */
     .dialog-box h2 {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem; /* 1rem * 1.5 */
       color: #111;
       font-weight: 700;
-      font-size: 1.6rem;
+      font-size: 2.4rem; /* 1.6rem * 1.5 */
     }
     .dialog-box p {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.25rem; /* 1.5rem * 1.5 */
       color: #333;
-      font-size: 1rem;
+      font-size: 1.5rem; /* 1rem * 1.5 */
     }
     .dialog-box button {
-      padding: 12px 24px;
-      margin: 0 12px;
+      padding: 18px 36px; /* 12px 24px * 1.5 */
+      margin: 0 18px; /* 12px * 1.5 */
       border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+      border-radius: 12px; /* 8px * 1.5 */
+      font-size: 1.5rem; /* 1rem * 1.5 */
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
@@ -84,78 +84,78 @@
 
     /* Form Styles */
     .form-box h2 {
-      margin-bottom: 1.5rem;
+      margin-bottom: 2.25rem; /* 1.5rem * 1.5 */
       color: #111;
       font-weight: 700;
-      font-size: 1.8rem;
+      font-size: 2.7rem; /* 1.8rem * 1.5 */
     }
     input {
       width: 100%;
-      padding: 1rem 1rem 1rem 0.75rem;
-      font-size: 1rem;
+      padding: 1.5rem 1.5rem 1.5rem 1.125rem; /* scaled 1rem padding */
+      font-size: 1.5rem; /* 1rem * 1.5 */
       border: 2px solid #ddd;
-      border-radius: 10px;
+      border-radius: 15px; /* 10px * 1.5 */
       background: #fff;
       transition: border-color 0.3s ease;
-      outline-offset: 2px;
+      outline-offset: 3px; /* 2px * 1.5 */
     }
     input:focus {
       border-color: #007bff;
-      box-shadow: 0 0 6px #a2c4ff;
+      box-shadow: 0 0 9px #a2c4ff; /* 6px * 1.5 */
     }
     label {
       position: absolute;
       top: 50%;
-      left: 1rem;
+      left: 1.5rem; /* 1rem * 1.5 */
       transform: translateY(-50%);
       background: rgba(255, 255, 255, 0.95);
-      padding: 0 0.25rem;
+      padding: 0 0.375rem; /* 0.25rem * 1.5 */
       color: #666;
-      font-size: 1rem;
+      font-size: 1.5rem; /* 1rem * 1.5 */
       pointer-events: none;
       transition: 0.2s ease all;
     }
     input:focus + label,
     input:not(:placeholder-shown) + label {
-      top: -0.6rem;
-      left: 0.6rem;
-      font-size: 0.75rem;
+      top: -0.9rem; /* -0.6rem * 1.5 */
+      left: 0.9rem; /* 0.6rem * 1.5 */
+      font-size: 1.125rem; /* 0.75rem * 1.5 */
       color: #007bff;
     }
     button[type="submit"] {
       width: 100%;
-      padding: 1rem;
+      padding: 1.5rem; /* 1rem * 1.5 */
       background-color: #007bff;
       border: none;
-      border-radius: 12px;
+      border-radius: 18px; /* 12px * 1.5 */
       color: white;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.65rem; /* 1.1rem * 1.5 */
       cursor: pointer;
       transition: background-color 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+      box-shadow: 0 6px 18px rgba(0, 123, 255, 0.4); /* scaled */
     }
     button[type="submit"]:hover {
       background-color: #0056b3;
-      box-shadow: 0 6px 18px rgba(0, 86, 179, 0.6);
+      box-shadow: 0 9px 27px rgba(0, 86, 179, 0.6); /* scaled */
     }
     button[type="submit"]:focus {
-      outline: 3px solid #a2c4ff;
+      outline: 4.5px solid #a2c4ff; /* scaled */
     }
 
     /* Main Content */
     .container h1 {
-      margin-bottom: 20px;
+      margin-bottom: 30px; /* 20px * 1.5 */
       color: #000;
       font-weight: 700;
-      font-size: 2.2rem;
+      font-size: 3.3rem; /* 2.2rem * 1.5 */
     }
     .container p {
-      margin: 12px 0;
+      margin: 18px 0; /* 12px * 1.5 */
     }
     .container a {
       color: #007bff;
-      font-size: 1.15rem;
+      font-size: 1.725rem; /* 1.15rem * 1.5 */
       text-decoration: none;
       transition: text-decoration 0.3s ease;
     }
@@ -166,37 +166,37 @@
     /* Mobile styles: increase font sizes and button sizes */
     @media (max-width: 480px) {
       .dialog-box h2 {
-        font-size: 1.9rem;
+        font-size: 2.9rem; /* 1.9rem * 1.5 */
       }
       .dialog-box p {
-        font-size: 1.2rem;
+        font-size: 1.8rem; /* 1.2rem * 1.5 */
       }
       .dialog-box button {
-        font-size: 1.3rem;
-        padding: 14px 28px;
-        margin: 10px 8px;
+        font-size: 2rem; /* 1.3rem * 1.5 */
+        padding: 21px 42px; /* scaled */
+        margin: 15px 12px;
       }
 
       .form-box h2 {
-        font-size: 2rem;
+        font-size: 3rem; /* 2rem * 1.5 */
       }
       input {
-        font-size: 1.1rem;
-        padding: 1.2rem 1rem 1.2rem 0.75rem;
+        font-size: 1.65rem; /* 1.1rem * 1.5 */
+        padding: 1.8rem 1.5rem 1.8rem 1rem;
       }
       label {
-        font-size: 1.1rem;
+        font-size: 1.65rem; /* 1.1rem * 1.5 */
       }
       button[type="submit"] {
-        font-size: 1.3rem;
-        padding: 1.2rem;
+        font-size: 1.95rem; /* 1.3rem * 1.5 */
+        padding: 1.8rem;
       }
 
       .container h1 {
-        font-size: 2.4rem;
+        font-size: 3.6rem; /* 2.4rem * 1.5 */
       }
       .container a {
-        font-size: 1.4rem;
+        font-size: 2.1rem; /* 1.4rem * 1.5 */
       }
     }
   </style>
