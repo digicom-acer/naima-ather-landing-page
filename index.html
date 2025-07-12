@@ -5,21 +5,42 @@
   <title>Welcome to Our Info Hub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      height: 100%;
+      overflow-x: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #parallax-bg {
       background-image: url('https://digicom-acer.github.io/naima-ather-landing-page/background.jpg');
       background-size: cover;
       background-position: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      z-index: -2;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(2px);
+      z-index: -1;
     }
 
     .dialog-box, .container {
-      background: rgba(255, 255, 255, 0.71);
+      background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 30px;
@@ -29,6 +50,8 @@
       max-width: 500px;
       width: 90%;
       box-sizing: border-box;
+      margin: auto;
+      margin-top: 10vh;
     }
 
     .form-box {
@@ -44,6 +67,8 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      margin: auto;
+      margin-top: 10vh;
     }
 
     .form-group {
@@ -221,6 +246,8 @@
   </style>
 </head>
 <body>
+  <div id="parallax-bg"></div>
+
   <!-- Consent Dialog -->
   <div class="dialog-box" id="dialog" style="display: none;">
     <h2>Share Your Contact Details?</h2>
@@ -267,8 +294,6 @@
   <script>
     window.onload = function () {
       document.getElementById('dialog').style.display = 'block';
-      document.getElementById('formBox').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'none';
 
       window.showForm = function () {
         document.getElementById('dialog').style.display = 'none';
@@ -290,7 +315,7 @@
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 
         if (!phoneRegex.test(phone)) {
-          alert('Please enter a valid phone number (10-15 digits, optional +).');
+          alert('Please enter a valid phone number (10–15 digits).');
           form.phone.focus();
           return;
         }
